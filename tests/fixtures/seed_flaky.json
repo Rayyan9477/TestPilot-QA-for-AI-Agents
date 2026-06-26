@@ -1,0 +1,10 @@
+[
+  {
+    "case_id": "flaky-01",
+    "evaluator_type": "semantic_similarity",
+    "evaluator_name": "Semantic similarity",
+    "score": 88,
+    "passed_on_retry": true,
+    "retry_count": 2
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "case_id": "drift-01",
+    "evaluator_type": "deterministic_exact",
+    "evaluator_name": "Exact match",
+    "score": 0,
+    "passed_on_retry": false,
+    "retry_count": 1,
+    "expected": "btn-login",
+    "actual": "btn-signin"
+  }
+]

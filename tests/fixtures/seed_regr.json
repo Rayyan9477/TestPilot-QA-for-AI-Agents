@@ -1,0 +1,13 @@
+[
+  {
+    "case_id": "regr-01",
+    "evaluator_type": "llm_judge_faithfulness",
+    "evaluator_name": "Faithfulness",
+    "score": 41,
+    "passed_on_retry": false,
+    "retry_count": 3,
+    "expected": "Cited policy LCD-12345 before answering",
+    "actual": "Answered without citing any policy",
+    "trajectory_diff": "step 3: expected lookup_policy, got summarize"
+  }
+]

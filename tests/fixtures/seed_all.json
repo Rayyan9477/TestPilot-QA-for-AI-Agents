@@ -1,0 +1,31 @@
+[
+  {
+    "case_id": "drift-01",
+    "evaluator_type": "deterministic_exact",
+    "evaluator_name": "Exact match",
+    "score": 0,
+    "passed_on_retry": false,
+    "retry_count": 1,
+    "expected": "btn-login",
+    "actual": "btn-signin"
+  },
+  {
+    "case_id": "flaky-01",
+    "evaluator_type": "semantic_similarity",
+    "evaluator_name": "Semantic similarity",
+    "score": 88,
+    "passed_on_retry": true,
+    "retry_count": 2
+  },
+  {
+    "case_id": "regr-01",
+    "evaluator_type": "llm_judge_faithfulness",
+    "evaluator_name": "Faithfulness",
+    "score": 41,
+    "passed_on_retry": false,
+    "retry_count": 3,
+    "expected": "Cited policy LCD-12345 before answering",
+    "actual": "Answered without citing any policy",
+    "trajectory_diff": "step 3: expected lookup_policy, got summarize"
+  }
+]

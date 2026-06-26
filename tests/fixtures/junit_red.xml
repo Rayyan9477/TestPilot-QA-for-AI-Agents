@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="1" failures="1">
+  <testsuite name="CheckoutTests" tests="1" failures="1">
+    <testcase name="Checkout_Submit_Click">
+      <failure message="element not found: btn-signin"/>
+    </testcase>
+  </testsuite>
+</testsuites>

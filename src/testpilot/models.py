@@ -41,3 +41,34 @@ class Classification(BaseModel):
     category: Category
     reason: str
     confidence: float = Field(ge=0.0, le=1.0)
+
+
+class JUnitReport(BaseModel):
+    tests: int
+    failures: int
+    cases: list[dict]  # [{"name": str, "passed": bool}]
+
+
+class FixProposal(BaseModel):
+    file_path: str       # repo-relative; resolves under repo_root
+    old_line: str
+    new_line: str
+    unified_diff: str    # exactly one '-' and one '+' content line
+
+
+class CommitResult(BaseModel):
+    branch: str
+    sha: str
+    files_changed: list[str]
+
+
+class RootCauseSummary(BaseModel):
+    title: str
+    body_markdown: str
+    slack_text: str = Field(max_length=4000)
+
+
+class QuarantineNote(BaseModel):
+    case_id: str
+    action: str = "quarantine"
+    retry_policy: dict

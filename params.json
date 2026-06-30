@@ -1,0 +1,4 @@
+{
+  "_comment": "Input parameters for the Test Manager re-run (uipcli test run -i ./params.json). The exact schema is verified against the installed CLI on Day 1 (S9/S12); empty parameters = use the test set's own defaults.",
+  "parameters": {}
+}

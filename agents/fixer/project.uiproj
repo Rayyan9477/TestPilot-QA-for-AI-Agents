@@ -1,0 +1,6 @@
+{
+  "ProjectType": "Function",
+  "Name": "testpilot-fixer",
+  "Description": "TestPilot Fixer coded agent (UiPath AgentHack, Track 3)",
+  "MainFile": null
+}

@@ -1,0 +1,87 @@
+{
+    "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+    "$id": "entry-points.json",
+    "entryPoints": [
+        {
+            "filePath": "main",
+            "uniqueId": "d6231b2a-e7c2-4f95-a9d2-ace0aed71b68",
+            "type": "function",
+            "input": {
+                "type": "object",
+                "properties": {
+                    "eval_results_json": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "eval_results_json"
+                ]
+            },
+            "output": {
+                "type": "object",
+                "properties": {
+                    "classifications": {
+                        "type": "array"
+                    },
+                    "primary_category": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "classifications",
+                    "primary_category"
+                ]
+            },
+            "graph": {
+                "nodes": [
+                    {
+                        "id": "main.py:32",
+                        "name": "main",
+                        "type": "function",
+                        "metadata": {
+                            "file": "main.py"
+                        }
+                    },
+                    {
+                        "id": "testpilot/eval_result_parser.py:59",
+                        "name": "parse_eval_results",
+                        "type": "function",
+                        "metadata": {
+                            "file": "testpilot/eval_result_parser.py"
+                        }
+                    },
+                    {
+                        "id": "testpilot/triage_classifier.py:69",
+                        "name": "select_primary_category",
+                        "type": "function",
+                        "metadata": {
+                            "file": "testpilot/triage_classifier.py"
+                        }
+                    },
+                    {
+                        "id": "testpilot/triage_classifier.py:61",
+                        "name": "classify",
+                        "type": "function",
+                        "metadata": {
+                            "file": "testpilot/triage_classifier.py"
+                        }
+                    }
+                ],
+                "edges": [
+                    {
+                        "source": "main.py:32",
+                        "target": "testpilot/eval_result_parser.py:59"
+                    },
+                    {
+                        "source": "main.py:32",
+                        "target": "testpilot/triage_classifier.py:69"
+                    },
+                    {
+                        "source": "main.py:32",
+                        "target": "testpilot/triage_classifier.py:61"
+                    }
+                ]
+            }
+        }
+    ]
+}

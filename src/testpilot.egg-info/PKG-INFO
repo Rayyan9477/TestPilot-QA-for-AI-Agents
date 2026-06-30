@@ -1,3 +1,18 @@
+Metadata-Version: 2.4
+Name: testpilot
+Version: 0.1.0
+Summary: TestPilot — the on-call QA engineer for AI agents (UiPath AgentHack, Track 3)
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic>=2
+Provides-Extra: runtime
+Requires-Dist: anthropic>=0.40; extra == "runtime"
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+Dynamic: license-file
+
 # TestPilot — the on-call QA engineer for AI agents
 
 > **UiPath AgentHack · Track 3 (UiPath Test Cloud).** An agentic, governed quality gate that treats AI agents as first-class software-under-test.
@@ -14,32 +29,6 @@ TestPilot runs on **UiPath Maestro** and treats a failed **Agent Evaluation** ru
 
 **The load-bearing policy:** *a behavioral change in an agent is a product decision, not a bug fix — only a human merges behavior.* It is enforced in **code** (the severity-priority router sends any behavioral regression to a human, and the fixer refuses any non-mechanical case), not merely narrated.
 
-## Live demo — Mission Control
-
-A real-time ops room for **agent trust**: a 24-agent fleet, the **Triage Firewall** (watch a behavioral regression get *deflected* — never auto-merged), a fleet-trust gauge, the evaluator constellation, a live triage feed, the **Action Center human gate**, and a **hash-chained governance ledger** you can tamper with to prove it's tamper-evident.
-
-![TestPilot Mission Control](dashboard/tp-board.png)
-
-```bash
-python -m http.server 8139 --directory dashboard
-# open http://localhost:8139/  →  click ▶ PLAY DEMO
-```
-
-**▶ PLAY DEMO is fully narrated** — a guided 8-beat story walks any viewer from the red eval run → mechanical-drift auto-heal → flaky quarantine → the **firewall deflecting a behavioral regression** → the human's evidence packet → the tamper-evident ledger. The value lands in ~30 seconds with zero explanation needed.
-
-![TestPilot — guided demo deflecting a behavioral regression with full evidence](dashboard/tp-demo.png)
-
-The whole policy soul in one gesture: press **“Try to auto-merge behavior”** and the system slams a **DENIED** stamp and logs it — *behavior is a product decision, not a bug fix.*
-
-**Verified end-to-end** with a runnable Playwright smoke test ([`dashboard/tp.spec.mjs`](dashboard/tp.spec.mjs)): a behavioral-regression packet ticks *BAD MERGES PREVENTED*, writes a `REFUSED auto-fix` block, and the chain stays `VERIFIED`; press-to-be-DENIED logs a `BLOCKED` block; tampering with the ledger breaks the chain and reverting restores it.
-
-```bash
-cd dashboard && npm i -D @playwright/test && npx playwright install chromium
-npx playwright test            # 3 passed
-```
-
-> A minimal, dependency-free **static verdict card** (`dashboard/simple.html`) is also rendered straight from live pipeline output by `python scripts/build_dashboard.py` — handy for slides and a zero-JS fallback.
-
 ## How it works
 
 ```
@@ -55,7 +44,7 @@ Try the whole flow offline — no tenant, no network:
 
 ```bash
 python -m venv .venv && ./.venv/Scripts/python -m pip install -e ".[dev]"
-./.venv/Scripts/python -m pytest          # 83 tests, all green
+./.venv/Scripts/python -m pytest          # 67 tests, all green
 ./.venv/Scripts/python scripts/demo.py    # routes the seeded 3-case run through all branches
 ```
 
@@ -86,15 +75,14 @@ src/testpilot/        # the agent brains (pure, unit-tested)
   git_pr_runner.py · escalation_payload_builder.py · llm.py · pipeline.py
 agents/triage/        # UiPath coded agent — main.py + uipath.json
 agents/fixer/         # UiPath coded agent — main.py + uipath.json
-dashboard/            # Mission Control UI (index.html · app.js · styles.css · fleet.json) + tp.spec.mjs
-tests/                # 83 tests (unit + contract + integration smoke); fixtures/ = deterministic seed
-scripts/              # demo.py (offline 3-branch rehearsal) · build_dashboard.py (static card) · gen_fleet_data.py
+tests/                # 67 tests (unit + contract + integration smoke); fixtures/ = deterministic seed
+scripts/demo.py       # offline 3-branch dry-run / rehearsal
 docs/                 # PLAN · SYSTEM-DESIGN · EXECUTION-PLAN · COMPLIANCE-CHECKLIST
 ```
 
 ## Quality
 
-- **Strict TDD** — every module written test-first (red → green → refactor). **83 tests** pass offline in <1s; the Mission Control UI has its own runnable **Playwright** smoke test (3 passing).
+- **Strict TDD** — every module written test-first (red → green → refactor). **67 tests** pass offline in <0.3s.
 - **Contract test** guards the Maestro↔agent field-name mapping against silent drift.
 - **CI** (pytest) + **gitleaks** secret-scanning (public repo + auto-committing agent) + pre-commit hook.
 - Guardrails encoded in code: behavior is never auto-fixed (two independent checks), no empty/garbage PRs, secrets never on `argv`.

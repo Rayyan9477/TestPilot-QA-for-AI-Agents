@@ -1,0 +1,11 @@
+{
+  "_comment": "The Maestro Output>Response mapping (SYSTEM-DESIGN §3/§14). agent field (snake) -> Maestro process variable (camel). The contract test asserts these stay in sync with the live entrypoint dataclasses.",
+  "triage": {
+    "input": { "eval_results_json": "evalResultsJson" },
+    "output": { "classifications": "classifications", "primary_category": "primaryCategory" }
+  },
+  "fixer": {
+    "input": { "eval_result_json": "evalResultJson", "repo_url": "repoUrl" },
+    "output": { "branch": "fixBranch", "sha": "sha", "unified_diff": "unifiedDiff", "file_changed": "fileChanged" }
+  }
+}

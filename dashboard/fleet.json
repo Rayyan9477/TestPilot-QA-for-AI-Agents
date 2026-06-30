@@ -1,0 +1,1394 @@
+{
+  "generatedFor": "TestPilot \u2014 agent QA fleet",
+  "now": "2026-06-30T12:00:00",
+  "fleet": {
+    "agents": 8,
+    "monitored": 8,
+    "autoHealRate": 0.78,
+    "mttrMinutes": 6.2,
+    "escalations7d": 4,
+    "blockedReleases7d": 2,
+    "prsOpened7d": 11,
+    "evalsRun7d": 1284
+  },
+  "agents": [
+    {
+      "id": "agent-claims-triage",
+      "name": "Claims Triage Agent",
+      "type": "Coded \u00b7 Maestro",
+      "owner": "Revenue Cycle",
+      "trustScore": 92,
+      "status": "healthy",
+      "trustHistory": [
+        {
+          "t": "2026-06-01",
+          "score": 85
+        },
+        {
+          "t": "2026-06-02",
+          "score": 85
+        },
+        {
+          "t": "2026-06-03",
+          "score": 82
+        },
+        {
+          "t": "2026-06-04",
+          "score": 80
+        },
+        {
+          "t": "2026-06-05",
+          "score": 83
+        },
+        {
+          "t": "2026-06-06",
+          "score": 86
+        },
+        {
+          "t": "2026-06-07",
+          "score": 84
+        },
+        {
+          "t": "2026-06-08",
+          "score": 84
+        },
+        {
+          "t": "2026-06-09",
+          "score": 82
+        },
+        {
+          "t": "2026-06-10",
+          "score": 85
+        },
+        {
+          "t": "2026-06-11",
+          "score": 82
+        },
+        {
+          "t": "2026-06-12",
+          "score": 80
+        },
+        {
+          "t": "2026-06-13",
+          "score": 80
+        },
+        {
+          "t": "2026-06-14",
+          "score": 77
+        },
+        {
+          "t": "2026-06-15",
+          "score": 80
+        },
+        {
+          "t": "2026-06-16",
+          "score": 77
+        },
+        {
+          "t": "2026-06-17",
+          "score": 77
+        },
+        {
+          "t": "2026-06-18",
+          "score": 74
+        },
+        {
+          "t": "2026-06-19",
+          "score": 73
+        },
+        {
+          "t": "2026-06-20",
+          "score": 74
+        },
+        {
+          "t": "2026-06-21",
+          "score": 77
+        },
+        {
+          "t": "2026-06-22",
+          "score": 76
+        },
+        {
+          "t": "2026-06-23",
+          "score": 74
+        },
+        {
+          "t": "2026-06-24",
+          "score": 75
+        },
+        {
+          "t": "2026-06-25",
+          "score": 74
+        },
+        {
+          "t": "2026-06-26",
+          "score": 72
+        },
+        {
+          "t": "2026-06-27",
+          "score": 72
+        },
+        {
+          "t": "2026-06-28",
+          "score": 74
+        },
+        {
+          "t": "2026-06-29",
+          "score": 72
+        },
+        {
+          "t": "2026-06-30",
+          "score": 92
+        }
+      ],
+      "evaluators": {
+        "deterministic_exact": 0.89,
+        "json_similarity": 0.86,
+        "semantic_similarity": 0.93,
+        "llm_judge_faithfulness": 0.85,
+        "trajectory": 0.92
+      }
+    },
+    {
+      "id": "agent-prior-auth",
+      "name": "Prior-Auth Assistant",
+      "type": "Agent Builder",
+      "owner": "Revenue Cycle",
+      "trustScore": 74,
+      "status": "watch",
+      "trustHistory": [
+        {
+          "t": "2026-06-01",
+          "score": 73
+        },
+        {
+          "t": "2026-06-02",
+          "score": 75
+        },
+        {
+          "t": "2026-06-03",
+          "score": 76
+        },
+        {
+          "t": "2026-06-04",
+          "score": 76
+        },
+        {
+          "t": "2026-06-05",
+          "score": 75
+        },
+        {
+          "t": "2026-06-06",
+          "score": 75
+        },
+        {
+          "t": "2026-06-07",
+          "score": 73
+        },
+        {
+          "t": "2026-06-08",
+          "score": 74
+        },
+        {
+          "t": "2026-06-09",
+          "score": 78
+        },
+        {
+          "t": "2026-06-10",
+          "score": 80
+        },
+        {
+          "t": "2026-06-11",
+          "score": 84
+        },
+        {
+          "t": "2026-06-12",
+          "score": 85
+        },
+        {
+          "t": "2026-06-13",
+          "score": 83
+        },
+        {
+          "t": "2026-06-14",
+          "score": 81
+        },
+        {
+          "t": "2026-06-15",
+          "score": 84
+        },
+        {
+          "t": "2026-06-16",
+          "score": 83
+        },
+        {
+          "t": "2026-06-17",
+          "score": 85
+        },
+        {
+          "t": "2026-06-18",
+          "score": 84
+        },
+        {
+          "t": "2026-06-19",
+          "score": 88
+        },
+        {
+          "t": "2026-06-20",
+          "score": 91
+        },
+        {
+          "t": "2026-06-21",
+          "score": 88
+        },
+        {
+          "t": "2026-06-22",
+          "score": 86
+        },
+        {
+          "t": "2026-06-23",
+          "score": 88
+        },
+        {
+          "t": "2026-06-24",
+          "score": 90
+        },
+        {
+          "t": "2026-06-25",
+          "score": 92
+        },
+        {
+          "t": "2026-06-26",
+          "score": 96
+        },
+        {
+          "t": "2026-06-27",
+          "score": 99
+        },
+        {
+          "t": "2026-06-28",
+          "score": 97
+        },
+        {
+          "t": "2026-06-29",
+          "score": 95
+        },
+        {
+          "t": "2026-06-30",
+          "score": 74
+        }
+      ],
+      "evaluators": {
+        "deterministic_exact": 0.74,
+        "json_similarity": 0.75,
+        "semantic_similarity": 0.73,
+        "llm_judge_faithfulness": 0.73,
+        "trajectory": 0.77
+      }
+    },
+    {
+      "id": "agent-invoice-dispute",
+      "name": "Invoice Dispute Agent",
+      "type": "Coded \u00b7 LangGraph",
+      "owner": "Finance Ops",
+      "trustScore": 61,
+      "status": "blocked",
+      "trustHistory": [
+        {
+          "t": "2026-06-01",
+          "score": 58
+        },
+        {
+          "t": "2026-06-02",
+          "score": 59
+        },
+        {
+          "t": "2026-06-03",
+          "score": 62
+        },
+        {
+          "t": "2026-06-04",
+          "score": 64
+        },
+        {
+          "t": "2026-06-05",
+          "score": 61
+        },
+        {
+          "t": "2026-06-06",
+          "score": 65
+        },
+        {
+          "t": "2026-06-07",
+          "score": 67
+        },
+        {
+          "t": "2026-06-08",
+          "score": 66
+        },
+        {
+          "t": "2026-06-09",
+          "score": 64
+        },
+        {
+          "t": "2026-06-10",
+          "score": 68
+        },
+        {
+          "t": "2026-06-11",
+          "score": 65
+        },
+        {
+          "t": "2026-06-12",
+          "score": 65
+        },
+        {
+          "t": "2026-06-13",
+          "score": 66
+        },
+        {
+          "t": "2026-06-14",
+          "score": 65
+        },
+        {
+          "t": "2026-06-15",
+          "score": 65
+        },
+        {
+          "t": "2026-06-16",
+          "score": 68
+        },
+        {
+          "t": "2026-06-17",
+          "score": 71
+        },
+        {
+          "t": "2026-06-18",
+          "score": 75
+        },
+        {
+          "t": "2026-06-19",
+          "score": 73
+        },
+        {
+          "t": "2026-06-20",
+          "score": 72
+        },
+        {
+          "t": "2026-06-21",
+          "score": 76
+        },
+        {
+          "t": "2026-06-22",
+          "score": 79
+        },
+        {
+          "t": "2026-06-23",
+          "score": 80
+        },
+        {
+          "t": "2026-06-24",
+          "score": 79
+        },
+        {
+          "t": "2026-06-25",
+          "score": 82
+        },
+        {
+          "t": "2026-06-26",
+          "score": 83
+        },
+        {
+          "t": "2026-06-27",
+          "score": 86
+        },
+        {
+          "t": "2026-06-28",
+          "score": 88
+        },
+        {
+          "t": "2026-06-29",
+          "score": 91
+        },
+        {
+          "t": "2026-06-30",
+          "score": 61
+        }
+      ],
+      "evaluators": {
+        "deterministic_exact": 0.6,
+        "json_similarity": 0.62,
+        "semantic_similarity": 0.54,
+        "llm_judge_faithfulness": 0.63,
+        "trajectory": 0.62
+      }
+    },
+    {
+      "id": "agent-support-router",
+      "name": "Support Router",
+      "type": "Agent Builder",
+      "owner": "Customer Care",
+      "trustScore": 88,
+      "status": "healthy",
+      "trustHistory": [
+        {
+          "t": "2026-06-01",
+          "score": 81
+        },
+        {
+          "t": "2026-06-02",
+          "score": 82
+        },
+        {
+          "t": "2026-06-03",
+          "score": 83
+        },
+        {
+          "t": "2026-06-04",
+          "score": 80
+        },
+        {
+          "t": "2026-06-05",
+          "score": 79
+        },
+        {
+          "t": "2026-06-06",
+          "score": 82
+        },
+        {
+          "t": "2026-06-07",
+          "score": 84
+        },
+        {
+          "t": "2026-06-08",
+          "score": 86
+        },
+        {
+          "t": "2026-06-09",
+          "score": 85
+        },
+        {
+          "t": "2026-06-10",
+          "score": 82
+        },
+        {
+          "t": "2026-06-11",
+          "score": 86
+        },
+        {
+          "t": "2026-06-12",
+          "score": 89
+        },
+        {
+          "t": "2026-06-13",
+          "score": 92
+        },
+        {
+          "t": "2026-06-14",
+          "score": 95
+        },
+        {
+          "t": "2026-06-15",
+          "score": 98
+        },
+        {
+          "t": "2026-06-16",
+          "score": 96
+        },
+        {
+          "t": "2026-06-17",
+          "score": 99
+        },
+        {
+          "t": "2026-06-18",
+          "score": 99
+        },
+        {
+          "t": "2026-06-19",
+          "score": 96
+        },
+        {
+          "t": "2026-06-20",
+          "score": 96
+        },
+        {
+          "t": "2026-06-21",
+          "score": 94
+        },
+        {
+          "t": "2026-06-22",
+          "score": 94
+        },
+        {
+          "t": "2026-06-23",
+          "score": 98
+        },
+        {
+          "t": "2026-06-24",
+          "score": 97
+        },
+        {
+          "t": "2026-06-25",
+          "score": 95
+        },
+        {
+          "t": "2026-06-26",
+          "score": 97
+        },
+        {
+          "t": "2026-06-27",
+          "score": 94
+        },
+        {
+          "t": "2026-06-28",
+          "score": 92
+        },
+        {
+          "t": "2026-06-29",
+          "score": 89
+        },
+        {
+          "t": "2026-06-30",
+          "score": 88
+        }
+      ],
+      "evaluators": {
+        "deterministic_exact": 0.82,
+        "json_similarity": 0.82,
+        "semantic_similarity": 0.83,
+        "llm_judge_faithfulness": 0.83,
+        "trajectory": 0.87
+      }
+    },
+    {
+      "id": "agent-contract-review",
+      "name": "Contract Review Agent",
+      "type": "Coded \u00b7 LlamaIndex",
+      "owner": "Legal",
+      "trustScore": 79,
+      "status": "watch",
+      "trustHistory": [
+        {
+          "t": "2026-06-01",
+          "score": 73
+        },
+        {
+          "t": "2026-06-02",
+          "score": 74
+        },
+        {
+          "t": "2026-06-03",
+          "score": 76
+        },
+        {
+          "t": "2026-06-04",
+          "score": 78
+        },
+        {
+          "t": "2026-06-05",
+          "score": 82
+        },
+        {
+          "t": "2026-06-06",
+          "score": 80
+        },
+        {
+          "t": "2026-06-07",
+          "score": 78
+        },
+        {
+          "t": "2026-06-08",
+          "score": 82
+        },
+        {
+          "t": "2026-06-09",
+          "score": 86
+        },
+        {
+          "t": "2026-06-10",
+          "score": 90
+        },
+        {
+          "t": "2026-06-11",
+          "score": 94
+        },
+        {
+          "t": "2026-06-12",
+          "score": 95
+        },
+        {
+          "t": "2026-06-13",
+          "score": 93
+        },
+        {
+          "t": "2026-06-14",
+          "score": 92
+        },
+        {
+          "t": "2026-06-15",
+          "score": 90
+        },
+        {
+          "t": "2026-06-16",
+          "score": 92
+        },
+        {
+          "t": "2026-06-17",
+          "score": 93
+        },
+        {
+          "t": "2026-06-18",
+          "score": 97
+        },
+        {
+          "t": "2026-06-19",
+          "score": 96
+        },
+        {
+          "t": "2026-06-20",
+          "score": 93
+        },
+        {
+          "t": "2026-06-21",
+          "score": 93
+        },
+        {
+          "t": "2026-06-22",
+          "score": 95
+        },
+        {
+          "t": "2026-06-23",
+          "score": 94
+        },
+        {
+          "t": "2026-06-24",
+          "score": 91
+        },
+        {
+          "t": "2026-06-25",
+          "score": 92
+        },
+        {
+          "t": "2026-06-26",
+          "score": 90
+        },
+        {
+          "t": "2026-06-27",
+          "score": 91
+        },
+        {
+          "t": "2026-06-28",
+          "score": 93
+        },
+        {
+          "t": "2026-06-29",
+          "score": 92
+        },
+        {
+          "t": "2026-06-30",
+          "score": 79
+        }
+      ],
+      "evaluators": {
+        "deterministic_exact": 0.79,
+        "json_similarity": 0.84,
+        "semantic_similarity": 0.8,
+        "llm_judge_faithfulness": 0.72,
+        "trajectory": 0.74
+      }
+    },
+    {
+      "id": "agent-onboarding",
+      "name": "HR Onboarding Agent",
+      "type": "Maestro Case",
+      "owner": "People Ops",
+      "trustScore": 95,
+      "status": "healthy",
+      "trustHistory": [
+        {
+          "t": "2026-06-01",
+          "score": 87
+        },
+        {
+          "t": "2026-06-02",
+          "score": 87
+        },
+        {
+          "t": "2026-06-03",
+          "score": 90
+        },
+        {
+          "t": "2026-06-04",
+          "score": 90
+        },
+        {
+          "t": "2026-06-05",
+          "score": 90
+        },
+        {
+          "t": "2026-06-06",
+          "score": 94
+        },
+        {
+          "t": "2026-06-07",
+          "score": 96
+        },
+        {
+          "t": "2026-06-08",
+          "score": 93
+        },
+        {
+          "t": "2026-06-09",
+          "score": 90
+        },
+        {
+          "t": "2026-06-10",
+          "score": 91
+        },
+        {
+          "t": "2026-06-11",
+          "score": 95
+        },
+        {
+          "t": "2026-06-12",
+          "score": 96
+        },
+        {
+          "t": "2026-06-13",
+          "score": 96
+        },
+        {
+          "t": "2026-06-14",
+          "score": 98
+        },
+        {
+          "t": "2026-06-15",
+          "score": 99
+        },
+        {
+          "t": "2026-06-16",
+          "score": 99
+        },
+        {
+          "t": "2026-06-17",
+          "score": 99
+        },
+        {
+          "t": "2026-06-18",
+          "score": 97
+        },
+        {
+          "t": "2026-06-19",
+          "score": 97
+        },
+        {
+          "t": "2026-06-20",
+          "score": 95
+        },
+        {
+          "t": "2026-06-21",
+          "score": 95
+        },
+        {
+          "t": "2026-06-22",
+          "score": 99
+        },
+        {
+          "t": "2026-06-23",
+          "score": 99
+        },
+        {
+          "t": "2026-06-24",
+          "score": 99
+        },
+        {
+          "t": "2026-06-25",
+          "score": 99
+        },
+        {
+          "t": "2026-06-26",
+          "score": 99
+        },
+        {
+          "t": "2026-06-27",
+          "score": 96
+        },
+        {
+          "t": "2026-06-28",
+          "score": 99
+        },
+        {
+          "t": "2026-06-29",
+          "score": 99
+        },
+        {
+          "t": "2026-06-30",
+          "score": 95
+        }
+      ],
+      "evaluators": {
+        "deterministic_exact": 0.98,
+        "json_similarity": 0.94,
+        "semantic_similarity": 0.98,
+        "llm_judge_faithfulness": 0.92,
+        "trajectory": 0.9
+      }
+    },
+    {
+      "id": "agent-order-to-cash",
+      "name": "Order-to-Cash Agent",
+      "type": "Maestro BPMN",
+      "owner": "Finance Ops",
+      "trustScore": 84,
+      "status": "healthy",
+      "trustHistory": [
+        {
+          "t": "2026-06-01",
+          "score": 84
+        },
+        {
+          "t": "2026-06-02",
+          "score": 86
+        },
+        {
+          "t": "2026-06-03",
+          "score": 84
+        },
+        {
+          "t": "2026-06-04",
+          "score": 87
+        },
+        {
+          "t": "2026-06-05",
+          "score": 91
+        },
+        {
+          "t": "2026-06-06",
+          "score": 94
+        },
+        {
+          "t": "2026-06-07",
+          "score": 92
+        },
+        {
+          "t": "2026-06-08",
+          "score": 91
+        },
+        {
+          "t": "2026-06-09",
+          "score": 90
+        },
+        {
+          "t": "2026-06-10",
+          "score": 89
+        },
+        {
+          "t": "2026-06-11",
+          "score": 86
+        },
+        {
+          "t": "2026-06-12",
+          "score": 85
+        },
+        {
+          "t": "2026-06-13",
+          "score": 89
+        },
+        {
+          "t": "2026-06-14",
+          "score": 88
+        },
+        {
+          "t": "2026-06-15",
+          "score": 92
+        },
+        {
+          "t": "2026-06-16",
+          "score": 94
+        },
+        {
+          "t": "2026-06-17",
+          "score": 93
+        },
+        {
+          "t": "2026-06-18",
+          "score": 92
+        },
+        {
+          "t": "2026-06-19",
+          "score": 89
+        },
+        {
+          "t": "2026-06-20",
+          "score": 86
+        },
+        {
+          "t": "2026-06-21",
+          "score": 84
+        },
+        {
+          "t": "2026-06-22",
+          "score": 83
+        },
+        {
+          "t": "2026-06-23",
+          "score": 86
+        },
+        {
+          "t": "2026-06-24",
+          "score": 86
+        },
+        {
+          "t": "2026-06-25",
+          "score": 86
+        },
+        {
+          "t": "2026-06-26",
+          "score": 83
+        },
+        {
+          "t": "2026-06-27",
+          "score": 84
+        },
+        {
+          "t": "2026-06-28",
+          "score": 84
+        },
+        {
+          "t": "2026-06-29",
+          "score": 85
+        },
+        {
+          "t": "2026-06-30",
+          "score": 84
+        }
+      ],
+      "evaluators": {
+        "deterministic_exact": 0.88,
+        "json_similarity": 0.78,
+        "semantic_similarity": 0.81,
+        "llm_judge_faithfulness": 0.86,
+        "trajectory": 0.79
+      }
+    },
+    {
+      "id": "agent-kyc",
+      "name": "KYC Verification Agent",
+      "type": "Coded \u00b7 OpenAI",
+      "owner": "Risk & Compliance",
+      "trustScore": 67,
+      "status": "blocked",
+      "trustHistory": [
+        {
+          "t": "2026-06-01",
+          "score": 62
+        },
+        {
+          "t": "2026-06-02",
+          "score": 66
+        },
+        {
+          "t": "2026-06-03",
+          "score": 69
+        },
+        {
+          "t": "2026-06-04",
+          "score": 68
+        },
+        {
+          "t": "2026-06-05",
+          "score": 67
+        },
+        {
+          "t": "2026-06-06",
+          "score": 64
+        },
+        {
+          "t": "2026-06-07",
+          "score": 68
+        },
+        {
+          "t": "2026-06-08",
+          "score": 67
+        },
+        {
+          "t": "2026-06-09",
+          "score": 64
+        },
+        {
+          "t": "2026-06-10",
+          "score": 63
+        },
+        {
+          "t": "2026-06-11",
+          "score": 62
+        },
+        {
+          "t": "2026-06-12",
+          "score": 61
+        },
+        {
+          "t": "2026-06-13",
+          "score": 65
+        },
+        {
+          "t": "2026-06-14",
+          "score": 63
+        },
+        {
+          "t": "2026-06-15",
+          "score": 60
+        },
+        {
+          "t": "2026-06-16",
+          "score": 62
+        },
+        {
+          "t": "2026-06-17",
+          "score": 66
+        },
+        {
+          "t": "2026-06-18",
+          "score": 64
+        },
+        {
+          "t": "2026-06-19",
+          "score": 61
+        },
+        {
+          "t": "2026-06-20",
+          "score": 61
+        },
+        {
+          "t": "2026-06-21",
+          "score": 61
+        },
+        {
+          "t": "2026-06-22",
+          "score": 62
+        },
+        {
+          "t": "2026-06-23",
+          "score": 59
+        },
+        {
+          "t": "2026-06-24",
+          "score": 57
+        },
+        {
+          "t": "2026-06-25",
+          "score": 61
+        },
+        {
+          "t": "2026-06-26",
+          "score": 58
+        },
+        {
+          "t": "2026-06-27",
+          "score": 56
+        },
+        {
+          "t": "2026-06-28",
+          "score": 60
+        },
+        {
+          "t": "2026-06-29",
+          "score": 62
+        },
+        {
+          "t": "2026-06-30",
+          "score": 67
+        }
+      ],
+      "evaluators": {
+        "deterministic_exact": 0.7,
+        "json_similarity": 0.64,
+        "semantic_similarity": 0.67,
+        "llm_judge_faithfulness": 0.71,
+        "trajectory": 0.6
+      }
+    }
+  ],
+  "incidents": [
+    {
+      "id": "inc-003",
+      "agentId": "agent-invoice-dispute",
+      "agentName": "Invoice Dispute Agent",
+      "case_id": "regr-01",
+      "category": "BEHAVIORAL_REGRESSION",
+      "evaluator": "llm_judge_faithfulness",
+      "score": 41,
+      "action": "escalate",
+      "summary": "Behavioral regression: Faithfulness 100 \u2192 41 \u2014 RELEASE BLOCKED",
+      "status": "escalated \u00b7 human review",
+      "detail": {
+        "trajectory_diff": "step 3: expected lookup_policy, got summarize",
+        "expected": "Cited policy LCD-12345 before answering",
+        "actual": "Answered without citing any policy",
+        "slack_text": "Behavioral regression in Invoice Dispute Agent - a behavioral change in an agent is a product decision, not a bug fix. Score 41."
+      },
+      "ts": "2026-06-30T11:57:00"
+    },
+    {
+      "id": "inc-001",
+      "agentId": "agent-claims-triage",
+      "agentName": "Claims Triage Agent",
+      "case_id": "drift-01",
+      "category": "MECHANICAL_DRIFT",
+      "evaluator": "deterministic_exact",
+      "score": 0,
+      "action": "auto_heal",
+      "summary": "Heal drifted locator in UiTests/CheckoutTest.cs",
+      "status": "PR open \u00b7 awaiting human approval",
+      "detail": {
+        "file": "UiTests/CheckoutTest.cs",
+        "pr": "#42",
+        "unified_diff": "--- a/UiTests/CheckoutTest.cs\n+++ b/UiTests/CheckoutTest.cs\n-            var submit = app.FindElement(\"btn-signin\");\n+            var submit = app.FindElement(\"btn-login\");"
+      },
+      "ts": "2026-06-30T11:52:00"
+    },
+    {
+      "id": "inc-002",
+      "agentId": "agent-support-router",
+      "agentName": "Support Router",
+      "case_id": "flaky-01",
+      "category": "FLAKY",
+      "evaluator": "semantic_similarity",
+      "score": 88,
+      "action": "quarantine",
+      "summary": "Quarantined \u2014 passed on retry (non-deterministic)",
+      "status": "quarantined",
+      "detail": {
+        "retry_policy": {
+          "max_retries": 2,
+          "backoff": "exponential"
+        }
+      },
+      "ts": "2026-06-30T11:38:00"
+    },
+    {
+      "id": "inc-113",
+      "agentId": "agent-kyc",
+      "agentName": "KYC Verification Agent",
+      "case_id": "case-434",
+      "category": "BEHAVIORAL_REGRESSION",
+      "evaluator": "deterministic_exact",
+      "score": 35,
+      "action": "escalate",
+      "summary": "Behavioral regression escalated to a human",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-30T04:00:00"
+    },
+    {
+      "id": "inc-103",
+      "agentId": "agent-onboarding",
+      "agentName": "HR Onboarding Agent",
+      "case_id": "case-787",
+      "category": "MECHANICAL_DRIFT",
+      "evaluator": "json_similarity",
+      "score": 54,
+      "action": "auto_heal",
+      "summary": "Selector/schema drift auto-healed to a PR",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-30T02:00:00"
+    },
+    {
+      "id": "inc-114",
+      "agentId": "agent-invoice-dispute",
+      "agentName": "Invoice Dispute Agent",
+      "case_id": "case-174",
+      "category": "FLAKY",
+      "evaluator": "semantic_similarity",
+      "score": 2,
+      "action": "quarantine",
+      "summary": "Flaky eval quarantined with retry policy",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-30T00:00:00"
+    },
+    {
+      "id": "inc-105",
+      "agentId": "agent-invoice-dispute",
+      "agentName": "Invoice Dispute Agent",
+      "case_id": "case-240",
+      "category": "FLAKY",
+      "evaluator": "llm_judge_faithfulness",
+      "score": 28,
+      "action": "quarantine",
+      "summary": "Flaky eval quarantined with retry policy",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-29T23:00:00"
+    },
+    {
+      "id": "inc-110",
+      "agentId": "agent-contract-review",
+      "agentName": "Contract Review Agent",
+      "case_id": "case-165",
+      "category": "BEHAVIORAL_REGRESSION",
+      "evaluator": "deterministic_exact",
+      "score": 29,
+      "action": "escalate",
+      "summary": "Behavioral regression escalated to a human",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-29T22:00:00"
+    },
+    {
+      "id": "inc-112",
+      "agentId": "agent-invoice-dispute",
+      "agentName": "Invoice Dispute Agent",
+      "case_id": "case-969",
+      "category": "FLAKY",
+      "evaluator": "semantic_similarity",
+      "score": 51,
+      "action": "quarantine",
+      "summary": "Flaky eval quarantined with retry policy",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-29T16:00:00"
+    },
+    {
+      "id": "inc-101",
+      "agentId": "agent-support-router",
+      "agentName": "Support Router",
+      "case_id": "case-635",
+      "category": "BEHAVIORAL_REGRESSION",
+      "evaluator": "semantic_similarity",
+      "score": 71,
+      "action": "escalate",
+      "summary": "Behavioral regression escalated to a human",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-29T10:00:00"
+    },
+    {
+      "id": "inc-115",
+      "agentId": "agent-contract-review",
+      "agentName": "Contract Review Agent",
+      "case_id": "case-722",
+      "category": "MECHANICAL_DRIFT",
+      "evaluator": "json_similarity",
+      "score": 8,
+      "action": "auto_heal",
+      "summary": "Selector/schema drift auto-healed to a PR",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-29T02:00:00"
+    },
+    {
+      "id": "inc-111",
+      "agentId": "agent-prior-auth",
+      "agentName": "Prior-Auth Assistant",
+      "case_id": "case-378",
+      "category": "FLAKY",
+      "evaluator": "deterministic_exact",
+      "score": 23,
+      "action": "quarantine",
+      "summary": "Flaky eval quarantined with retry policy",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-29T01:00:00"
+    },
+    {
+      "id": "inc-107",
+      "agentId": "agent-order-to-cash",
+      "agentName": "Order-to-Cash Agent",
+      "case_id": "case-531",
+      "category": "FLAKY",
+      "evaluator": "json_similarity",
+      "score": 45,
+      "action": "quarantine",
+      "summary": "Flaky eval quarantined with retry policy",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-28T19:00:00"
+    },
+    {
+      "id": "inc-109",
+      "agentId": "agent-kyc",
+      "agentName": "KYC Verification Agent",
+      "case_id": "case-820",
+      "category": "FLAKY",
+      "evaluator": "deterministic_exact",
+      "score": 49,
+      "action": "quarantine",
+      "summary": "Flaky eval quarantined with retry policy",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-28T17:00:00"
+    },
+    {
+      "id": "inc-104",
+      "agentId": "agent-support-router",
+      "agentName": "Support Router",
+      "case_id": "case-410",
+      "category": "BEHAVIORAL_REGRESSION",
+      "evaluator": "deterministic_exact",
+      "score": 19,
+      "action": "escalate",
+      "summary": "Behavioral regression escalated to a human",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-28T13:00:00"
+    },
+    {
+      "id": "inc-106",
+      "agentId": "agent-order-to-cash",
+      "agentName": "Order-to-Cash Agent",
+      "case_id": "case-266",
+      "category": "FLAKY",
+      "evaluator": "json_similarity",
+      "score": 20,
+      "action": "quarantine",
+      "summary": "Flaky eval quarantined with retry policy",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-28T04:00:00"
+    },
+    {
+      "id": "inc-102",
+      "agentId": "agent-kyc",
+      "agentName": "KYC Verification Agent",
+      "case_id": "case-526",
+      "category": "MECHANICAL_DRIFT",
+      "evaluator": "deterministic_exact",
+      "score": 50,
+      "action": "auto_heal",
+      "summary": "Selector/schema drift auto-healed to a PR",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-28T03:00:00"
+    },
+    {
+      "id": "inc-100",
+      "agentId": "agent-contract-review",
+      "agentName": "Contract Review Agent",
+      "case_id": "case-620",
+      "category": "FLAKY",
+      "evaluator": "trajectory",
+      "score": 61,
+      "action": "quarantine",
+      "summary": "Flaky eval quarantined with retry policy",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-27T19:00:00"
+    },
+    {
+      "id": "inc-108",
+      "agentId": "agent-prior-auth",
+      "agentName": "Prior-Auth Assistant",
+      "case_id": "case-474",
+      "category": "BEHAVIORAL_REGRESSION",
+      "evaluator": "deterministic_exact",
+      "score": 43,
+      "action": "escalate",
+      "summary": "Behavioral regression escalated to a human",
+      "status": "resolved",
+      "detail": {},
+      "ts": "2026-06-27T13:00:00"
+    }
+  ]
+}

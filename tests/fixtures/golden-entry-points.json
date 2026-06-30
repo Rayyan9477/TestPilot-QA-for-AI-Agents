@@ -1,0 +1,11 @@
+{
+  "_comment": "Golden snapshot of each coded agent's entry-points (input/output field names). At S9 the REAL published entry-points.json is diffed against this to catch publish-time schema drift.",
+  "triage": {
+    "input": ["eval_results_json"],
+    "output": ["classifications", "primary_category"]
+  },
+  "fixer": {
+    "input": ["eval_result_json", "repo_url"],
+    "output": ["branch", "sha", "unified_diff", "file_changed"]
+  }
+}

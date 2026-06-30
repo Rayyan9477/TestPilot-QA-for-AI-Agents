@@ -101,20 +101,20 @@ function renderConstellation() {
 }
 
 // firewall scaffold
-const FW = { entry: [60, 150], gate: [300, 150], heal: [600, 64], quar: [600, 150], esc: [600, 236] };
+const FW = { entry: [60, 180], gate: [300, 180], heal: [600, 74], quar: [600, 180], esc: [600, 286] };
 function renderFirewall() {
   const sv = $("#firewall"); sv.innerHTML = "";
   const lane = (to, color, label) => { sv.append(S("path", { d: `M${FW.gate[0]} ${FW.gate[1]} C420 ${FW.gate[1]} 460 ${to[1]} ${to[0]} ${to[1]}`, fill: "none", stroke: color, "stroke-width": 2, opacity: .35 })); const bay = S("rect", { x: to[0] - 6, y: to[1] - 16, width: 34, height: 32, rx: 6, fill: "rgba(255,255,255,.02)", stroke: color, "stroke-width": 1, opacity: .6 }); sv.append(bay); const tx = S("text", { x: to[0] + 11, y: to[1] + 3, "text-anchor": "middle", fill: color, "font-size": 8, "font-family": "var(--mono)" }); tx.textContent = label; sv.append(tx); };
   // entry rail
-  sv.append(S("line", { x1: 20, y1: 150, x2: FW.gate[0], y2: 150, stroke: "var(--hairline)", "stroke-width": 2 }));
+  sv.append(S("line", { x1: 20, y1: FW.gate[1], x2: FW.gate[0], y2: FW.gate[1], stroke: "var(--hairline)", "stroke-width": 2 }));
   lane(FW.heal, "var(--heal)", "PR"); lane(FW.quar, "var(--quarantine)", "Q"); lane(FW.esc, "var(--escalate)", "ESC");
   // gateway
   const gp = `M${FW.gate[0]} ${FW.gate[1] - 30} L${FW.gate[0] + 30} ${FW.gate[1]} L${FW.gate[0]} ${FW.gate[1] + 30} L${FW.gate[0] - 30} ${FW.gate[1]} Z`;
   sv.append(S("path", { d: gp, fill: "rgba(34,211,238,.08)", stroke: "var(--trust)", "stroke-width": 1.5 }));
   const gt = S("text", { x: FW.gate[0], y: FW.gate[1] + 3, "text-anchor": "middle", fill: "var(--trust)", "font-size": 7.5, "font-family": "var(--mono)" }); gt.textContent = "ROUTER"; sv.append(gt);
   // membrane (between gate and heal lane)
-  const mem = S("rect", { x: 408, y: 24, width: 8, height: 110, rx: 4, fill: "var(--escalate)", class: "membrane", id: "membrane" }); mem.style.transformOrigin = "412px 80px"; sv.append(mem);
-  const ml = S("text", { x: 412, y: 18, "text-anchor": "middle", fill: "var(--escalate)", "font-size": 7, "font-family": "var(--mono)", id: "memLabel", opacity: 0 }); ml.textContent = "FIREWALL"; sv.append(ml);
+  const mem = S("rect", { x: 402, y: 48, width: 8, height: 160, rx: 4, fill: "var(--escalate)", class: "membrane", id: "membrane" }); mem.style.transformOrigin = "406px 128px"; sv.append(mem);
+  const ml = S("text", { x: 406, y: 40, "text-anchor": "middle", fill: "var(--escalate)", "font-size": 7, "font-family": "var(--mono)", id: "memLabel", opacity: .45 }); ml.textContent = "FIREWALL"; sv.append(ml);
 }
 const EVCOLOR = { deterministic_exact: "var(--heal)", json_similarity: "var(--heal)", semantic_similarity: "var(--quarantine)", llm_judge_faithfulness: "var(--escalate)", trajectory: "var(--escalate)" };
 async function spawnPacket(inc) {
@@ -130,9 +130,9 @@ async function spawnPacket(inc) {
   };
   await move(FW.gate[0], FW.gate[1], 700);
   if (inc.category === "BEHAVIORAL_REGRESSION") {
-    await move(405, 96, 360);                          // heads toward HEAL
+    await move(405, 120, 360);                         // heads toward HEAL
     fireMembrane();
-    if (!reduced) { g.animate([{ transform: "translate(405px,96px)" }, { transform: "translate(360px,150px)" }, { transform: `translate(${FW.esc[0]}px,${FW.esc[1]}px)` }], { duration: 900, easing: "cubic-bezier(.5,-0.4,.3,1)", fill: "forwards" }); pos = [FW.esc[0], FW.esc[1]]; }
+    if (!reduced) { g.animate([{ transform: "translate(405px,120px)" }, { transform: "translate(360px,180px)" }, { transform: `translate(${FW.esc[0]}px,${FW.esc[1]}px)` }], { duration: 900, easing: "cubic-bezier(.5,-0.4,.3,1)", fill: "forwards" }); pos = [FW.esc[0], FW.esc[1]]; }
     else { g.style.transform = `translate(${FW.esc[0]}px,${FW.esc[1]}px)`; pos = [FW.esc[0], FW.esc[1]]; }
     bumpBadMerges(); addBlock("TestPilot", "REFUSED auto-fix", inc.case_id, "refuse");
     toast("⛔ Behavioral regression REFUSED — escalated to a human", "bad");
@@ -146,7 +146,25 @@ async function spawnPacket(inc) {
   }
   if (!reduced) g.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, fill: "forwards" }).finished.then(() => g.remove()); else g.remove();
 }
-function fireMembrane() { const m = $("#membrane"), l = $("#memLabel"); if (!m) return; m.classList.remove("fire"); void m.getBoundingClientRect(); m.classList.add("fire"); if (l) l.animate([{ opacity: 0 }, { opacity: 1 }, { opacity: 0 }], { duration: 1000 }); lightStation(1); $(".firewall-wrap")?.classList.add("shake"); setTimeout(() => $(".firewall-wrap")?.classList.remove("shake"), 500); }
+function fireMembrane() { const m = $("#membrane"), l = $("#memLabel"); if (!m) return; m.classList.remove("fire"); void m.getBoundingClientRect(); m.classList.add("fire"); if (l) l.animate([{ opacity: .4 }, { opacity: 1 }, { opacity: .4 }], { duration: 1000 }); lightStation(1); $(".firewall-wrap")?.classList.add("shake"); setTimeout(() => $(".firewall-wrap")?.classList.remove("shake"), 500); }
+
+function laneCounts() { const c = { auto_heal: 0, quarantine: 0, escalate: 0 }; incidents.forEach(i => { if (c[i.lane] != null) c[i.lane]++; }); return c; }
+function renderFirewallMeta() {
+  const q = $("#fwQueue"); if (q) { q.innerHTML = ""; incidents.slice(0, 6).forEach(inc => { const dot = EVCOLOR[inc.evaluator] || "var(--trust)"; q.append(el("span", { class: "fchip", title: inc.agent + " · " + inc.case_id + " · " + EVAL_SHORT[inc.evaluator] }, el("i", { style: "background:" + dot }), inc.case_id)); }); }
+  const s = $("#fwStats"); if (!s) return; s.innerHTML = ""; const cn = laneCounts();
+  [["auto_heal", "AUTO-HEAL", "→ reviewable PR", cn.auto_heal, "var(--heal)"],
+   ["quarantine", "QUARANTINE", "retry policy · no code change", cn.quarantine, "var(--quarantine)"],
+   ["escalate", "ESCALATE", "human-only gate", cn.escalate, "var(--escalate)"]].forEach(([k, t, sub, n, c]) =>
+    s.append(el("div", { class: "fw-stat " + k },
+      el("div", { class: "fs-top" }, el("i", { style: "background:" + c }), el("span", { class: "fs-t" }, t)),
+      el("div", { class: "fs-n num", style: "color:" + c }, "" + n),
+      el("div", { class: "fs-s" }, sub))));
+}
+function renderConLegend() {
+  const u = $("#conLegend"); if (!u) return; u.innerHTML = "";
+  [["exact", "var(--heal)"], ["json-sim", "var(--heal)"], ["semantic", "var(--quarantine)"], ["faithful", "var(--escalate)"], ["trajectory", "var(--escalate)"]]
+    .forEach(([l, c]) => u.append(el("span", { class: "cl" }, el("i", { style: "background:" + c }), l)));
+}
 
 function renderFeed() {
   const u = $("#feedList"); u.innerHTML = "";
@@ -155,7 +173,7 @@ function renderFeed() {
 function feedRow(inc, fresh) {
   const li = el("li", { class: inc.lane + (fresh ? " fresh" : "") });
   const v = inc.lane === "auto_heal" ? "HEAL" : inc.lane === "quarantine" ? "QUAR" : "ESC";
-  li.append(el("span", { class: "t" }, "D-" + (89 - inc.day)), el("span", { class: "ag" }, inc.agent), el("span", {}, inc.case_id), el("span", { class: "v" }, v));
+  li.append(el("span", { class: "t" }, "D-" + (89 - inc.day)), el("span", { class: "ag" }, inc.agent), el("span", { class: "cs" }, inc.case_id), el("span", { class: "v" }, v));
   li.onclick = () => inc.category === "BEHAVIORAL_REGRESSION" ? openEvidence(inc) : inc.lane === "auto_heal" ? openPR(inc) : openEvidence(inc);
   return li;
 }
@@ -198,7 +216,7 @@ function flashStatus() { const ok = verifyChain(); $("#chainState").textContent 
 const show = id => { const o = $(id); o.hidden = false; };
 const hide = o => { o.hidden = true; };
 $$("[data-close]").forEach(b => b.onclick = e => hide(e.target.closest(".overlay")));
-document.addEventListener("keydown", e => { if (e.key === "Escape") $$(".overlay:not([hidden])").forEach(hide), $("#palette").hidden = true; });
+document.addEventListener("keydown", e => { if (e.key === "Escape") { $$(".overlay:not([hidden])").forEach(hide); $("#palette").hidden = true; endNarrate(); } });
 
 function openPR(inc) {
   const h = HERO.drift; $("#prTitle").textContent = "PR " + h.pr + " · " + (inc.agent || h.agent);
@@ -252,19 +270,61 @@ function tamper() { if (!ledger.length) return; const b = ledger[Math.floor(ledg
 function openPalette() { const p = $("#palette"); p.hidden = false; const inp = $("#palInput"); inp.value = ""; inp.focus(); fillPalette(""); }
 function fillPalette(q) { const items = [{ l: "▶ Run PLAY DEMO", a: playDemo }, { l: "Open Governance Ledger", a: () => show("#ledgerPanel") }, { l: "Tamper demo (break chain)", a: tamper }, ...agents.map(a => ({ l: "Agent · " + a.callsign + " (trust " + a.trust + ")", a: () => openAgent(a) }))].filter(x => x.l.toLowerCase().includes(q.toLowerCase())); const u = $("#palList"); u.innerHTML = ""; items.slice(0, 8).forEach((it, i) => { const li = el("li", { class: i === 0 ? "sel" : "" }, it.l); li.onclick = () => { $("#palette").hidden = true; it.a(); }; u.append(li); }); }
 
+// ---------- GUIDED DEMO NARRATOR (teleprompter) ----------
+const NR_ACCENT = { heal: "var(--heal)", quar: "var(--quarantine)", esc: "var(--escalate)", trust: "var(--trust)", hero: "var(--hero)" };
+const NR_TOTAL = 8;
+function narrate(step, kicker, title, body, accent = "trust") {
+  const n = $("#narrator"); n.hidden = false;
+  n.style.setProperty("--nr", NR_ACCENT[accent] || accent);
+  $("#nrStep").textContent = String(step).padStart(2, "0") + " / " + String(NR_TOTAL).padStart(2, "0");
+  $("#nrKicker").textContent = kicker; $("#nrTitle").textContent = title; $("#nrBody").textContent = body;
+  const d = $("#nrDots"); d.innerHTML = ""; for (let i = 1; i <= NR_TOTAL; i++) d.append(el("i", { class: i <= step ? "on" : "" }));
+  n.classList.remove("in"); void n.offsetWidth; n.classList.add("in");
+}
+function endNarrate() { const n = $("#narrator"); if (n) { n.classList.remove("in"); n.hidden = true; } }
+
 // ---------- AUTOPILOT (PLAY DEMO) ----------
 let demoRunning = false;
 async function playDemo() {
-  if (demoRunning) return; demoRunning = true; $("#playDemo").textContent = "● RUNNING";
-  toast("▶ Demo: a governed AI immune system at work");
-  await pulsePipeline();
-  await spawnPacket({ ...HERO.drift }); lightStation(2); lightStation(3);
-  await spawnPacket({ ...HERO.flaky });
-  toast("⚠ Incoming: behavioral regression on Invoice-Dispute", "bad"); await wait(500);
-  await spawnPacket({ ...HERO.regr }); lightStation(4);
-  await wait(400); openEvidence(HERO.regr); await wait(2600); hide($("#evidence"));
-  show("#ledgerPanel"); await wait(1600);
-  $("#playDemo").textContent = "▶ PLAY DEMO"; demoRunning = false;
+  if (demoRunning) return; demoRunning = true;
+  const btn = $("#playDemo"); btn.textContent = "● RUNNING"; btn.classList.remove("cta");
+  document.body.classList.add("demo-on");
+
+  narrate(1, "The problem", "Everyone ships AI agents — almost no one governs them",
+    "A silent behavioral regression looks green on the surface. Watch TestPilot triage one failed Agent-Evaluation run, live.", "hero");
+  await wait(3400);
+
+  narrate(2, "Incident", "A nightly eval run just went RED",
+    "TestPilot wakes up and inspects every failing case, routing each by which evaluator class actually broke.", "trust");
+  await pulsePipeline(); await wait(1500);
+
+  narrate(3, "Case 1 · Mechanical drift", "A renamed selector — safe to auto-heal",
+    "btn-signin → btn-login: a deterministic exact-match failure. TestPilot drafts the one-line fix and opens a reviewable GitHub PR.", "heal");
+  await spawnPacket({ ...HERO.drift }); lightStation(2); lightStation(3); await wait(1600);
+
+  narrate(4, "Case 2 · Flaky", "Passed on retry — genuine non-determinism",
+    "No behavior changed and not a line of code is touched. TestPilot quarantines it with a retry policy so it can't block the build.", "quar");
+  await spawnPacket({ ...HERO.flaky }); await wait(1600);
+
+  narrate(5, "Case 3 · The dangerous one", "Faithfulness 100 → 41",
+    "Invoice-Dispute stopped citing policy before answering. This is not a broken selector — the agent's behavior actually changed.", "esc");
+  toast("⚠ Incoming: behavioral regression on Invoice-Dispute", "bad"); await wait(2800);
+
+  narrate(6, "The firewall", "Behavior is a product decision, not a bug fix",
+    "TestPilot REFUSES to auto-fix it, deflects it at the firewall, and escalates to a human. A bad merge is prevented.", "esc");
+  await spawnPacket({ ...HERO.regr }); lightStation(4); await wait(1300);
+
+  narrate(7, "The evidence", "What the human actually receives",
+    "Expected vs actual tool-path, the exact divergence, every eval score, and a keyless AI root-cause — via the UiPath AI Trust Layer.", "trust");
+  openEvidence(HERO.regr); await wait(4400); hide($("#evidence"));
+
+  narrate(8, "The proof", "Every decision is hash-chained & tamper-evident",
+    "Auto-heal, quarantine, refusal, human approval — all written to an append-only governance ledger you can audit and export.", "heal");
+  show("#ledgerPanel"); await wait(4000);
+
+  toast("✓ TestPilot — an on-call QA engineer for your AI agents", "good");
+  endNarrate(); document.body.classList.remove("demo-on");
+  btn.textContent = "▶ PLAY DEMO"; demoRunning = false;
 }
 
 // live injection
@@ -298,8 +358,9 @@ function fleetTrust() { return Math.round(agents.reduce((s, a) => s + a.trust, 0
 
 // ---------- INIT ----------
 function init() {
-  renderKPIs(); renderFleet(); renderConstellation(); renderFirewall(); renderFeed(); renderInbox(); renderTimeline(); renderStations(); renderLedger(); flashStatus(); updatePending();
+  renderKPIs(); renderFleet(); renderConstellation(); renderConLegend(); renderFirewall(); renderFirewallMeta(); renderFeed(); renderInbox(); renderTimeline(); renderStations(); renderLedger(); flashStatus(); updatePending();
   $("#sbTrust").textContent = fleetTrust();
+  $("#playDemo").classList.add("cta");   // "start here" affordance until first run
   startLive();
   window.__TP = { get badMerges() { return kpis.bad_merges_prevented; }, get ledger() { return ledger; }, chainOk: verifyChain(), spawnPacket, deny, tamper, playDemo, HERO, addBlock };
   boot();

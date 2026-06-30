@@ -1,0 +1,159 @@
+{
+    "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+    "$id": "entry-points.json",
+    "entryPoints": [
+        {
+            "filePath": "main",
+            "uniqueId": "495c73e0-ea6e-4d18-b1c5-8606e56d4eaf",
+            "type": "function",
+            "input": {
+                "type": "object",
+                "properties": {
+                    "eval_result_json": {
+                        "type": "string"
+                    },
+                    "repo_url": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "eval_result_json",
+                    "repo_url"
+                ]
+            },
+            "output": {
+                "type": "object",
+                "properties": {
+                    "branch": {
+                        "type": "string"
+                    },
+                    "sha": {
+                        "type": "string"
+                    },
+                    "unified_diff": {
+                        "type": "string"
+                    },
+                    "file_changed": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "branch",
+                    "sha",
+                    "unified_diff",
+                    "file_changed"
+                ]
+            },
+            "graph": {
+                "nodes": [
+                    {
+                        "id": "main.py:55",
+                        "name": "main",
+                        "type": "function",
+                        "metadata": {
+                            "file": "main.py"
+                        }
+                    },
+                    {
+                        "id": "testpilot/selector_fixer.py:85",
+                        "name": "draft_fix",
+                        "type": "function",
+                        "metadata": {
+                            "file": "testpilot/selector_fixer.py"
+                        }
+                    },
+                    {
+                        "id": "testpilot/selector_fixer.py:38",
+                        "name": "_find_unique_line",
+                        "type": "function",
+                        "metadata": {
+                            "file": "testpilot/selector_fixer.py"
+                        }
+                    },
+                    {
+                        "id": "testpilot/selector_fixer.py:52",
+                        "name": "_clean",
+                        "type": "function",
+                        "metadata": {
+                            "file": "testpilot/selector_fixer.py"
+                        }
+                    },
+                    {
+                        "id": "testpilot/selector_fixer.py:56",
+                        "name": "_build_prompt",
+                        "type": "function",
+                        "metadata": {
+                            "file": "testpilot/selector_fixer.py"
+                        }
+                    },
+                    {
+                        "id": "testpilot/git_pr_runner.py:67",
+                        "name": "apply_and_branch",
+                        "type": "function",
+                        "metadata": {
+                            "file": "testpilot/git_pr_runner.py"
+                        }
+                    },
+                    {
+                        "id": "testpilot/git_pr_runner.py:38",
+                        "name": "_commit_message",
+                        "type": "function",
+                        "metadata": {
+                            "file": "testpilot/git_pr_runner.py"
+                        }
+                    },
+                    {
+                        "id": "testpilot/triage_classifier.py:61",
+                        "name": "classify",
+                        "type": "function",
+                        "metadata": {
+                            "file": "testpilot/triage_classifier.py"
+                        }
+                    },
+                    {
+                        "id": "main.py:37",
+                        "name": "_default_llm",
+                        "type": "function",
+                        "metadata": {
+                            "file": "main.py"
+                        }
+                    }
+                ],
+                "edges": [
+                    {
+                        "source": "testpilot/selector_fixer.py:85",
+                        "target": "testpilot/selector_fixer.py:38"
+                    },
+                    {
+                        "source": "testpilot/selector_fixer.py:85",
+                        "target": "testpilot/selector_fixer.py:52"
+                    },
+                    {
+                        "source": "testpilot/selector_fixer.py:85",
+                        "target": "testpilot/selector_fixer.py:56"
+                    },
+                    {
+                        "source": "main.py:55",
+                        "target": "testpilot/selector_fixer.py:85"
+                    },
+                    {
+                        "source": "testpilot/git_pr_runner.py:67",
+                        "target": "testpilot/git_pr_runner.py:38"
+                    },
+                    {
+                        "source": "main.py:55",
+                        "target": "testpilot/git_pr_runner.py:67"
+                    },
+                    {
+                        "source": "main.py:55",
+                        "target": "testpilot/triage_classifier.py:61"
+                    },
+                    {
+                        "source": "main.py:55",
+                        "target": "main.py:37"
+                    }
+                ]
+            }
+        }
+    ]
+}

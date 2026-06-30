@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TestPilot — Mission Control for Agent Trust</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Chivo:wght@300;400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="atmos" aria-hidden="true"><div class="grid"></div><div class="mesh"></div><div class="scan"></div><div class="noise"></div></div>
+
+<div id="boot" data-testid="boot">
+  <div class="boot-inner">
+    <div class="boot-logo">TEST<span>PILOT</span></div>
+    <div class="boot-sub">MISSION CONTROL · AGENT TRUST</div>
+    <div id="bootStations" class="boot-stations"></div>
+    <div class="boot-status" id="bootStatus">BOOTING…</div>
+    <button id="bootSkip" class="boot-skip" data-testid="boot-skip">SKIP ⏎</button>
+  </div>
+</div>
+
+<div id="app">
+  <header class="rail" data-testid="kpi-rail">
+    <div class="brand"><span class="brand-mark"></span><b>TESTPILOT</b><i>mission control</i></div>
+    <div class="kpis" id="kpis"></div>
+    <div class="controls">
+      <div class="seg" id="modeToggle" data-testid="mode-toggle"><button data-mode="live" class="on">LIVE</button><button data-mode="replay">REPLAY</button></div>
+      <button class="ctl" id="cmdkBtn" title="Command palette (Ctrl/Cmd+K)">⌘K</button>
+      <button class="ctl play" id="playDemo" data-testid="btn-play-demo">▶ PLAY DEMO</button>
+    </div>
+  </header>
+
+  <main class="board">
+    <aside class="panel fleet" data-testid="fleet">
+      <div class="panel-h"><span>FLEET</span><div class="filters" id="fleetFilters"></div></div>
+      <div class="fleet-grid" id="fleetGrid" data-testid="fleet-grid"></div>
+      <div class="radar" aria-hidden="true"></div>
+    </aside>
+
+    <section class="center">
+      <div class="situation">
+        <div class="trust-wrap panel">
+          <div class="panel-h"><span>FLEET TRUST INDEX</span><em id="trustBand"></em></div>
+          <div class="gaugebox"><svg id="trustGauge" viewBox="0 0 220 130" data-testid="trust-gauge"></svg><div class="gauge-val" id="trustVal">—</div></div>
+          <svg id="trustTrend" class="trend" viewBox="0 0 260 44" preserveAspectRatio="none"></svg>
+        </div>
+        <div class="firewall-wrap panel" data-testid="firewall">
+          <div class="panel-h"><span>TRIAGE FIREWALL</span><em class="policy">only a human merges behavior</em></div>
+          <svg id="firewall" viewBox="0 0 640 300"></svg>
+          <div class="lanes-legend"><i class="heal">AUTO-HEAL</i><i class="quar">QUARANTINE</i><i class="esc">ESCALATE</i></div>
+        </div>
+        <div class="constellation panel">
+          <div class="panel-h"><span>EVALUATORS</span></div>
+          <svg id="constellation" viewBox="0 0 200 176"></svg>
+        </div>
+      </div>
+    </section>
+
+    <aside class="rightcol">
+      <div class="panel feed" data-testid="feed">
+        <div class="panel-h"><span>LIVE TRIAGE FEED</span><em class="led" id="feedLed"></em></div>
+        <ul id="feedList" class="feedlist"></ul>
+      </div>
+      <div class="panel inbox" data-testid="inbox">
+        <div class="panel-h"><span>ACTION CENTER · HUMAN GATE</span><em id="pendingCount"></em></div>
+        <ul id="inboxList" class="inboxlist"></ul>
+        <button id="denyBtn" class="deny" data-testid="btn-deny">⛔ Try to auto-merge behavior</button>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="transport">
+    <div class="timeline" data-testid="timeline">
+      <div class="tl-h">ON-CALL TIMELINE · 90 DAYS</div>
+      <div class="tl-track" id="tlTrack"></div>
+      <input id="scrubber" type="range" min="0" max="89" value="89" data-testid="scrubber" aria-label="timeline scrubber" />
+    </div>
+    <div class="stationmap" data-testid="station-map">
+      <div class="sm-h">UIPATH PIPELINE</div>
+      <div class="stations" id="stations"></div>
+    </div>
+  </footer>
+
+  <div class="statusbar" data-testid="statusbar">
+    <button id="ledgerToggle" class="chain" data-testid="chain-status"><span class="seal" id="chainSeal">●</span> CHAIN INTEGRITY: <b id="chainState">VERIFIED</b></button>
+    <span class="sb-mid" id="sbMid"></span>
+    <span class="sb-right">FLEET TRUST <b id="sbTrust">—</b></span>
+  </div>
+</div>
+
+<section id="ledgerPanel" class="overlay ledger" data-testid="ledger" hidden>
+  <div class="ov-h"><span>GOVERNANCE LEDGER · hash-chained, append-only</span>
+    <div class="ov-actions"><button id="tamperBtn" data-testid="btn-tamper">TAMPER DEMO</button><button id="exportBtn">EXPORT JSON</button><button class="x" data-close>✕</button></div></div>
+  <ol id="ledgerList" class="ledgerlist"></ol>
+</section>
+
+<section id="evidence" class="overlay evidence" data-testid="evidence-drawer" hidden>
+  <div class="ov-h"><span id="evTitle">EVIDENCE · TRIAGE REPLAY</span><button class="x" data-close>✕</button></div>
+  <div class="ev-body">
+    <div class="ev-traj"><div class="ev-sub">TOOL-PATH · expected vs actual</div><svg id="evTraj" viewBox="0 0 420 150"></svg></div>
+    <div class="ev-side">
+      <div class="ev-gauges" id="evGauges"></div>
+      <div class="ev-cmp" id="evCmp"></div>
+      <div class="ev-rca"><div class="rca-badge">via AI Trust Layer · keyless</div><pre id="evRca" class="rca"></pre></div>
+    </div>
+  </div>
+</section>
+
+<section id="prTheater" class="overlay pr" data-testid="pr-theater" hidden>
+  <div class="ov-h"><span id="prTitle">PULL REQUEST</span><button class="x" data-close>✕</button></div>
+  <div class="pr-body">
+    <div class="pr-meta" id="prMeta"></div>
+    <pre id="prDiff" class="diff"></pre>
+    <div class="pr-foot"><span class="junit" id="prJunit"></span><span class="gate">AWAITING HUMAN APPROVAL</span></div>
+  </div>
+</section>
+
+<section id="agentDrawer" class="overlay drawer" data-testid="agent-drawer" hidden>
+  <div class="ov-h"><span id="adName">AGENT</span><button class="x" data-close>✕</button></div>
+  <div id="adBody" class="ad-body"></div>
+</section>
+
+<div id="palette" class="palette" data-testid="palette" hidden>
+  <div class="pal-box"><input id="palInput" placeholder="Jump to agent, incident, lane, ledger… or type 'demo'" /><ul id="palList"></ul></div>
+</div>
+
+<div id="denied" class="denied" data-testid="denied-stamp" hidden><div class="stamp">DENIED</div><div class="stamp-sub">behavior is a product decision, not a bug fix</div></div>
+<div id="toast" class="toast" hidden></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

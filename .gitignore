@@ -7,3 +7,11 @@ out/
 dist/
 *.nupkg
 .uipath/
+.playwright-mcp/
+# node / Playwright test runner (dashboard smoke test) — deps are installed on demand
+node_modules/
+test-results/
+playwright-report/
+.last-run.json
+# vendored at build time by scripts/build_agents.py (single source of truth is src/testpilot)
+agents/*/testpilot/

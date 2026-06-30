@@ -1,6 +1,7 @@
-"""Render a self-contained TestPilot dashboard (dashboard/index.html) from the live pipeline
-output — a demo visual and a Playwright-verifiable surface. Data is embedded (no fetch), so it
-opens straight from the filesystem.
+"""Render the self-contained TestPilot *static verdict card* (dashboard/simple.html) from the
+live pipeline output — a minimal, dependency-free, Playwright-verifiable surface that opens
+straight from the filesystem. The rich, animated experience lives in dashboard/index.html
+(Mission Control); this script intentionally writes `simple.html` so it never clobbers it.
 """
 import json
 import re
@@ -113,6 +114,6 @@ document.getElementById('grid').innerHTML = DATA.actions.map(a => {
 out = ROOT / "dashboard"
 out.mkdir(exist_ok=True)
 (out / "results.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
-(out / "index.html").write_text(TEMPLATE.replace("__DATA__", json.dumps(data)), encoding="utf-8")
-print("dashboard written ->", (out / "index.html"))
+(out / "simple.html").write_text(TEMPLATE.replace("__DATA__", json.dumps(data)), encoding="utf-8")
+print("dashboard written ->", (out / "simple.html"))
 print("verdict:", data["primary_category"], "| actions:", [a["action"] for a in data["actions"]])

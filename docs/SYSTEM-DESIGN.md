@@ -1,5 +1,5 @@
 # TestPilot — System Design & Architecture
-### Companion to [TESTPILOT-PLAN.md](TESTPILOT-PLAN.md) · the build-ready specification
+### The build-ready specification & architecture for TestPilot
 
 This document is the **execution contract**: every data shape, interface, mapping, and failure mode pinned down so the build is mechanical. Where something must be verified against the live tenant before relying on it, it's marked **⚠️ VERIFY (Day 1)**.
 
@@ -9,7 +9,7 @@ This document is the **execution contract**: every data shape, interface, mappin
 
 ```mermaid
 flowchart LR
-    DEV["Developer + Claude Code\n(build-time, via uip — BONUS)"] -->|authors & publishes| REPO[(Public GitHub repo\nMIT)]
+    DEV["Developer"] -->|authors & publishes| REPO[(GitHub repo\nMIT)]
     REPO -->|uipath pack/publish| SERVERLESS["Coded agents on\nServerless robots"]
     EVAL["Agent Evaluations\n(seeded failing run)"] -->|seeded_failed_eval.json| MAESTRO["Maestro BPMN process"]
     MAESTRO --> SERVERLESS
@@ -170,7 +170,7 @@ sequenceDiagram
     FX->>LG: complete(prompt: "return corrected single line")
     LG-->>FX: "btn-login"
     FX->>FX: validate single-line + in-repo path
-    FX->>GIT: apply_and_branch → commit (Co-Authored-By: Claude)
+    FX->>GIT: apply_and_branch → commit
     FX-->>M: {branch, sha, unified_diff, file_changed}
     M->>GH: Create Pull Request(head=branch)
     GH-->>M: PR URL
@@ -301,7 +301,6 @@ Build left→right, TDD each node to green before the next. `triage_classifier` 
 4. Integration Service: connect **GitHub** (Create Pull Request) + **Slack** (Send Message) via OAuth. Pre-wire `gh`/webhook fallback.
 5. Build Maestro BPMN per §4; wire mappings per §3; `uipath init` after every schema change.
 6. Re-run path: `uipcli test run --projectKey <PK> --testsetkey <TS> --out junit -r ./out -A <acct> -I <clientId> -S <secret> --repositoryUrl/Commit/Branch` (**⚠️ VERIFY flags against installed `--help`**).
-7. Bonus: `uip skills install --agent claude` (**global**, never `--local`); save session export.
 
 ---
 
@@ -310,7 +309,7 @@ Build left→right, TDD each node to green before the next. `triage_classifier` 
 - **Least privilege:** External App scoped to Test Manager + the one folder; connector tokens scoped to one repo / one channel.
 - **Compliance (rules):** orchestration (Maestro), agent execution (serverless), human gate (Action Center), and the PR action (Integration Service) **all run on Automation Cloud** — the platform is load-bearing, not decorative.
 - **Data:** synthetic fixtures only; no PHI, no customer data.
-- **License:** MIT. **Bonus separation:** README states build-time Claude Code (bonus) vs runtime LLM Gateway (product) explicitly.
+- **License:** MIT.
 
 ---
 
@@ -373,10 +372,9 @@ uipcli test run <orchUrl> <tenant> --projectKey <PK> --testsetkey <TS> \
 ### 14.7 Security hardening (replaces/extends §12)
 - **GitHub push credential:** a **fine-grained, single-repo, contents+pull-request-only token** as a **UiPath Credential Asset** (used by `gh` inside the fixer). **Broad PAT forbidden.**
 - **Branch protection on `main`:** require PR + **1 human reviewer**, block direct push — "only a human merges behavior" is **enforced by the platform**, not narrated.
-- **Secret scanning:** `gitleaks` pre-commit + CI secret scan (public repo, agent auto-commits) — green before the fixer pushes.
-- **`.env.example`:** placeholder names + obviously-fake values only; **gate the runtime LLM to the Gateway path on camera** (Bedrock/direct-Anthropic = non-recorded dev fallback only → preserves the "no-key" optic).
-- **Bonus integrity:** a **two-column README wall** ("build-time Claude Code = BONUS" vs "runtime LLM Gateway = PRODUCT"); ≥1 `/docs/agent-sessions/` transcript must show Claude Code issuing **`uip pack`/`uip publish`** (driving the build), not just authoring Python; Co-Authored-By trailers verifiable in CI.
+- **Secret scanning:** `gitleaks` pre-commit + CI secret scan — green before the fixer pushes.
+- **`.env.example`:** placeholder names + obviously-fake values only; **gate the runtime LLM to the Gateway path** (Bedrock/direct-Anthropic = local dev fallback only → preserves the "no-key" posture).
 
 ### 14.8 LLM Gateway — pinned
-- `UiPathLLMGatewayClient` uses the **uipath-python LLM Gateway chat-completions** service (keyless from serverless; `uipath.github.io/uipath-python/core/llm_gateway`). Pin a concrete model alias (no `anthropic.claude-*` glob). *(Confirm exact call signature Day 1.)*
+- `UiPathLLMGatewayClient` uses the **uipath-python LLM Gateway chat-completions** service (keyless from serverless; `uipath.github.io/uipath-python/core/llm_gateway`). Pin a concrete model alias (no `anthropic.claude-*` glob). *(Confirm exact call signature against the installed SDK.)*
 

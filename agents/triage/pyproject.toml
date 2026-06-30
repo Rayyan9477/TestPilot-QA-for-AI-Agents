@@ -1,7 +1,7 @@
 [project]
 name = "testpilot-triage"
 version = "0.1.0"
-description = "TestPilot Triage coded agent (UiPath AgentHack, Track 3)"
+description = "TestPilot Triage coded agent"
 authors = [{ name = "TestPilot authors" }]
 dependencies = ["uipath>=2.10.0,<2.11.0", "pydantic>=2"]
 requires-python = ">=3.11"

@@ -1,7 +1,0 @@
-pydantic>=2
-
-[dev]
-pytest>=8
-
-[runtime]
-anthropic>=0.40

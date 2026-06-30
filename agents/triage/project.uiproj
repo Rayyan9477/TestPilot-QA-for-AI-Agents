@@ -1,6 +1,6 @@
 {
   "ProjectType": "Function",
   "Name": "testpilot-triage",
-  "Description": "TestPilot Triage coded agent (UiPath AgentHack, Track 3)",
+  "Description": "TestPilot Triage coded agent",
   "MainFile": null
 }

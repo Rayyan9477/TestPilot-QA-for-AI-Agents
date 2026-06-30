@@ -1,5 +1,5 @@
-# Secret-scan on every commit — the fixer auto-commits to a public repo, so a leaked token
-# must be blocked before it ever lands. Install with: pre-commit install
+# Secret-scan on every commit, so a leaked token is blocked before it ever lands.
+# Install with: pre-commit install
 repos:
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.18.4

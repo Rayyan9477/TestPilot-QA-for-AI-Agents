@@ -1,7 +1,7 @@
 [project]
 name = "testpilot"
 version = "0.1.0"
-description = "TestPilot — the on-call QA engineer for AI agents (UiPath AgentHack, Track 3)"
+description = "TestPilot — the on-call QA engineer for AI agents"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

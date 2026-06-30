@@ -1,9 +1,8 @@
 """TDD — git_pr_runner: apply a validated one-line fix to a branch and build the Test-Manager
 re-run command. subprocess is injected (FakeCmdRunner) so tests need no git/network.
 
-The runtime heal commit is attributed to TestPilot (LLM Gateway) — deliberately NOT
-'Co-Authored-By: Claude', which is reserved for the build-time coding-agent bonus (§14.7).
-The re-run secret is an env reference, never a literal (§14.6).
+The heal commit is attributed to TestPilot (the fix is drafted via the LLM Gateway).
+The re-run secret is an env reference, never a literal.
 """
 import shutil
 import sys
@@ -76,7 +75,7 @@ def test_commit_message_marks_testpilot_heal_not_claude(tmp_path):
     commit = next(c for c in runner.calls if c[:2] == ["git", "commit"])
     msg = commit[commit.index("-m") + 1]
     assert "TestPilot" in msg and "CheckoutTest.cs" in msg
-    assert "Co-Authored-By: Claude" not in msg  # bonus lane stays separate
+    assert "Co-Authored-By: Claude" not in msg  # heal commits are attributed to TestPilot only
 
 
 def test_returns_commit_result(tmp_path):

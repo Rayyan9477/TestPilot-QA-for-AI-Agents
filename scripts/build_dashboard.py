@@ -79,7 +79,7 @@ TEMPLATE = r"""<!doctype html>
   </header>
   <div id="verdict" class="verdict"></div>
   <div id="grid" class="grid"></div>
-  <footer>UiPath AgentHack &middot; Track&nbsp;3 &middot; Maestro orchestration &middot; coded agents on Automation Cloud &middot; governed by the AI&nbsp;Trust&nbsp;Layer</footer>
+  <footer>TestPilot &middot; Maestro orchestration &middot; coded agents on Automation Cloud &middot; governed by the AI&nbsp;Trust&nbsp;Layer</footer>
 </div>
 <script>
 const DATA = __DATA__;

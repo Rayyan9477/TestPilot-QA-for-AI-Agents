@@ -1,6 +1,6 @@
 # TestPilot — the on-call QA engineer for AI agents
 
-> **UiPath AgentHack · Track 3 (UiPath Test Cloud).** An agentic, governed quality gate that treats AI agents as first-class software-under-test.
+> An agentic, governed quality gate that treats AI agents as first-class software-under-test.
 
 Everyone is shipping AI agents. Almost nobody has a **governed** way to catch when an agent has *silently regressed* — when its **behavior** drifted, not its code. Self-healing selectors is a solved commodity; **governing agent quality is not.**
 
@@ -38,7 +38,7 @@ cd dashboard && npm i -D @playwright/test && npx playwright install chromium
 npx playwright test            # 3 passed
 ```
 
-> A minimal, dependency-free **static verdict card** (`dashboard/simple.html`) is also rendered straight from live pipeline output by `python scripts/build_dashboard.py` — handy for slides and a zero-JS fallback.
+> A minimal, dependency-free **static verdict card** (`dashboard/simple.html`) is also rendered straight from live pipeline output by `python scripts/build_dashboard.py` — a lightweight, zero-JS fallback.
 
 ## How it works
 
@@ -70,13 +70,7 @@ python -m venv .venv && ./.venv/Scripts/python -m pip install -e ".[dev]"
 - **Action Center** — human-in-the-loop approval / review.
 - **AI Trust Layer — LLM Gateway** — the runtime LLM for the fixer (keyless, governed).
 
-**Agent type:** **combination** — a low-code Agent Builder triage agent **+** a Python coded fixer agent, built with Claude Code via *UiPath for Coding Agents*.
-
-## Built with UiPath for Coding Agents (Claude Code)  ·  vs the runtime LLM
-
-| Build-time — **BONUS** (UiPath for Coding Agents) | Runtime — **PRODUCT** (not the bonus) |
-|---|---|
-| **Claude Code** (via `uip skills install --agent claude`) authored the coded fixer/classifier and the test-runner glue **test-first (TDD)**, and drives `uip pack` / `uip publish`. Evidence: [`CLAUDE-GENERATED.md`](CLAUDE-GENERATED.md), `docs/agent-sessions/`, `Co-Authored-By` commit trail. | The fixer drafts its one-line diff via the **UiPath AI Trust Layer LLM Gateway** (keyless, governed). This is an "agent uses an LLM" design choice — **not** the coding-agent bonus. |
+**Agent type:** **combination** — a low-code Agent Builder triage agent **+** a Python coded fixer agent. The fixer drafts its one-line diff via the **UiPath AI Trust Layer LLM Gateway** (keyless, governed) — an "agent uses an LLM" design choice behind an injected `LLMClient` Protocol, so the whole pipeline is unit-tested offline.
 
 ## Repository layout
 
@@ -89,14 +83,14 @@ agents/fixer/         # UiPath coded agent — main.py + uipath.json
 dashboard/            # Mission Control UI (index.html · app.js · styles.css · fleet.json) + tp.spec.mjs
 tests/                # 83 tests (unit + contract + integration smoke); fixtures/ = deterministic seed
 scripts/              # demo.py (offline 3-branch rehearsal) · build_dashboard.py (static card) · gen_fleet_data.py
-docs/                 # PLAN · SYSTEM-DESIGN · EXECUTION-PLAN · COMPLIANCE-CHECKLIST
+docs/                 # SYSTEM-DESIGN · CLOUD-RUNBOOK
 ```
 
 ## Quality
 
 - **Strict TDD** — every module written test-first (red → green → refactor). **83 tests** pass offline in <1s; the Mission Control UI has its own runnable **Playwright** smoke test (3 passing).
 - **Contract test** guards the Maestro↔agent field-name mapping against silent drift.
-- **CI** (pytest) + **gitleaks** secret-scanning (public repo + auto-committing agent) + pre-commit hook.
+- **CI** (GitHub Actions) runs the full test suite on every push.
 - Guardrails encoded in code: behavior is never auto-fixed (two independent checks), no empty/garbage PRs, secrets never on `argv`.
 
 ## Setup & prerequisites
@@ -105,7 +99,7 @@ docs/                 # PLAN · SYSTEM-DESIGN · EXECUTION-PLAN · COMPLIANCE-CH
 **On UiPath (the running solution):** an Automation Cloud (Agentic) tenant with Maestro, coded-agents-on-serverless, Agent Evaluations, Integration Service (GitHub + Slack), Action Center, and Test Manager; an External Application with scopes `OR.Folders OR.Execution TM.Projects TM.TestSets TM.TestExecutions`. Publish the agents with `uipath init && uipath pack && uipath publish`. Full runbook in [`docs/SYSTEM-DESIGN.md`](docs/SYSTEM-DESIGN.md) §11/§14.
 
 ## Docs
-[Plan](docs/TESTPILOT-PLAN.md) · [System Design](docs/SYSTEM-DESIGN.md) · [Execution Plan](docs/EXECUTION-PLAN.md) · [Compliance Checklist](docs/COMPLIANCE-CHECKLIST.md)
+[System Design](docs/SYSTEM-DESIGN.md) · [Cloud Runbook](docs/CLOUD-RUNBOOK.md)
 
 ---
 _License: **MIT**. All test data is **synthetic** — no PHI, no customer data._

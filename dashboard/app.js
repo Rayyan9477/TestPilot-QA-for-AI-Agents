@@ -220,7 +220,7 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") { $$(".overl
 
 function openPR(inc) {
   const h = HERO.drift; $("#prTitle").textContent = "PR " + h.pr + " · " + (inc.agent || h.agent);
-  $("#prMeta").textContent = `branch fix/${h.case_id} → main · ${h.file} · authored by TestPilot via UiPath for Coding Agents`;
+  $("#prMeta").textContent = `branch fix/${h.case_id} → main · ${h.file} · authored by TestPilot`;
   const diff = $("#prDiff"); diff.innerHTML = "";
   const lines = [["", "--- a/" + h.file], ["", "+++ b/" + h.file], ["del", h.old_line], ["add", h.new_line]];
   show("#prTheater"); $("#prJunit").className = "junit red"; $("#prJunit").textContent = "JUnit: 1 failed";

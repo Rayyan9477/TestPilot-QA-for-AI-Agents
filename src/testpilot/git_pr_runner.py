@@ -1,9 +1,8 @@
 """Apply a validated FixProposal to a branch and build the Test-Manager re-run command.
 
 subprocess is injected behind CmdRunner so the unit tests run with no git/network. The
-runtime heal commit is attributed to TestPilot (the fix was drafted via the UiPath LLM
-Gateway) and is deliberately kept separate from the build-time Claude Code bonus (§14.7).
-The re-run ClientSecret is referenced from the environment, never embedded in argv (§14.6).
+heal commit is attributed to TestPilot (the fix is drafted via the UiPath LLM Gateway).
+The re-run ClientSecret is referenced from the environment, never embedded in argv.
 """
 from __future__ import annotations
 

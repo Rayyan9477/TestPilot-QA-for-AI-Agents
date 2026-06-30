@@ -1,6 +1,6 @@
 """Runtime LLM seam. The product calls the UiPath AI Trust Layer LLM Gateway (keyless,
 governed) — but the client is injected behind a Protocol so the whole fixer is unit-tested
-offline with FakeLLM, and the real gateway/bedrock clients are wired Day 1 (SYSTEM-DESIGN §6, §14.8).
+offline with FakeLLM, and the real gateway client is wired in production.
 """
 from __future__ import annotations
 
@@ -36,10 +36,10 @@ class UiPathLLMGatewayClient:
     """Runtime client — routes through the UiPath AI Trust Layer LLM Gateway (keyless,
     governed) via ``sdk.llm.chat_completions``. Construction is side-effect-free (the SDK is
     built lazily) so entrypoints import safely with empty env; the live call is an integration
-    seam validated on the tenant at S13 (SYSTEM-DESIGN §6/§14.8).
+    seam validated against the tenant.
 
     NOTE: confirm the exact Gateway model id with ``uipath list-models`` on the tenant; any
-    Gateway model works, and the demo narrative uses a Claude model.
+    Gateway model works (the default is a Claude model).
     """
 
     def __init__(self, model: str = "anthropic.claude-sonnet-4-6", sdk: object | None = None) -> None:

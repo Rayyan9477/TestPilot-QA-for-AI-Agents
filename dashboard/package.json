@@ -4,5 +4,8 @@
   "type": "module",
   "devDependencies": {
     "@playwright/test": "^1.61.1"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
   }
 }

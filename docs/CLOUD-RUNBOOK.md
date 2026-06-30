@@ -1,5 +1,5 @@
-# TestPilot — Cloud Execution Runbook (S8–S12)
-### The exact, ordered steps to run once your Agentic-trial tenant is live. Pairs with [SYSTEM-DESIGN.md](SYSTEM-DESIGN.md) (§14 binding) + [EXECUTION-PLAN.md](EXECUTION-PLAN.md).
+# TestPilot — Cloud Execution Runbook
+### The exact, ordered steps to run once your Automation Cloud tenant is live. Pairs with [SYSTEM-DESIGN.md](SYSTEM-DESIGN.md) (§14 binding).
 
 > Everything offline is already done and validated: 76 tests green, both coded agents `uipath pack`-ed, triage proven to **execute under the real uipath runtime**. This runbook covers only the tenant-gated work.
 
@@ -101,4 +101,4 @@ You can wire each action as a **Maestro connector/User task**, OR do it **in-age
 - **S11 done:** Branch A opens a real PR + an approval task; Branch C opens an Action Center task + a Slack message; Branch B writes a quarantine item.
 - **S12 done (M3):** all three branches + the durability controls demonstrated on the tenant.
 
-Then → **S13** real-LLM smoke (the `UiPathLLMGatewayClient` is ready — set the model via `uipath list-models`), record the demo (S14), finish the deck + submit (S15–S16). Run the [COMPLIANCE-CHECKLIST](COMPLIANCE-CHECKLIST.md) §G before submitting.
+Then → **real-LLM smoke** (the `UiPathLLMGatewayClient` is ready — set the model via `uipath list-models`).
